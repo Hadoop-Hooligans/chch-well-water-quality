@@ -1,0 +1,29 @@
+Site ID,BT27/5037
+Site Name,Lyell Ck II
+Sample ID,20242302
+Collection Date,12-Mar 2024 13:10pm
+Name,Value,Units
+"Alkalinity, Total","192.0","g/m3 as CaCO3"
+"Bicarbonate","230.000","mg/L  at 25°C"
+"Calcium, Dissolved","42.000","mg/L"
+"Chloride","5.700","mg/L"
+"Conductivity","37.2","mS/m"
+"Conductivity (Field)","37.38","mS/m"
+"Difference in Ion Balance","4.300","%"
+"Dissolved Oxygen","-0.060","mg/L"
+"Dissolved Oxygen Saturation","-0.600","%"
+"E. coli","<1","MPN/100mL"
+"Hardness, Total","151.000","g/m3 as CaCO3"
+"Magnesium, Dissolved","10.900","mg/L"
+"Nitrate Nitrogen","<0.050","mg/L"
+"Oxidation Reduction Potential","-133.800","mV"
+"pH","7.5",""
+"pH (Field)","6.94",""
+"Potassium, Dissolved","1.200","mg/L"
+"Silica, Reactive","34.000","mg/L  as SiO2"
+"Sodium, Dissolved","30.000","mg/L"
+"Sulphate","<0.500","mg/L"
+"Sum of anions","4.000","meq/L"
+"Sum of cations","4.400","meq/L"
+"Total Coliforms","<1.00","number/100mL"
+"Water Temperature (Field)","12.8","C"
