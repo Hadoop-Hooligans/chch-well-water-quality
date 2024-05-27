@@ -1,6 +1,8 @@
 import sys
 import os
 from datetime import datetime
+import json
+
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 script_dir = os.path.join(current_dir, '..')
@@ -14,9 +16,15 @@ def get_measurement_value(df, measurement):
     if not row.empty:
         value = row.iloc[0]['Value']
         units = row.iloc[0]['Units']
-        return measurement, value, units
+        return {"determinand_name" : str(measurement),
+                "determinand_actual_value" : str(value),
+                "determinand_units" : str(units)
+                }
     else:
-        return measurement, None, None
+        return {"determinand_name" : None,
+                "determinand_actual_value" : None,
+                "determinand_units" : None
+                }
 
 
 
@@ -30,9 +38,9 @@ def insert_into_recordings(conn, well_code, sample, collection_date, sub_df):
     try:
         cur = conn.cursor()
         select_query = '''
-        SELECT 1 FROM sample WHERE sample_id = %s;
+        SELECT 1 FROM recordings WHERE sample_id = %s;
         '''
-        cur.execute(select_query, (int(sample),))
+        cur.execute(select_query, (str(sample),))
         if cur.fetchone() is None:
             # Data does not exist, perform the insert
             insert_query = '''
@@ -49,7 +57,7 @@ def insert_into_recordings(conn, well_code, sample, collection_date, sub_df):
             '''
             cur.execute(insert_query, (
                 well_code,
-                int(sample),
+                str(sample),
                 collection_date
             ))
             insert_into_sample(conn=conn, sample_id=sample, collection_date=collection_date, sub_df= sub_df)
@@ -67,7 +75,7 @@ def insert_into_sample(conn, sample_id, collection_date, sub_df):
         cur = conn.cursor()
             # Data does not exist, perform the insert
         insert_query = '''
-        INSERT INTO sample
+        INSERT INTO sample_v2
         (
             sample_id,
             date_recorded,
@@ -90,20 +98,20 @@ def insert_into_sample(conn, sample_id, collection_date, sub_df):
         (
             %s,
             %s,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand,
-            (%s)::actual_determinand
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb,
+            %s::jsonb
         );
         '''
         chloride = get_measurement_value(sub_df, 'Chloride')
@@ -122,22 +130,22 @@ def insert_into_sample(conn, sample_id, collection_date, sub_df):
         total_coliforms = get_measurement_value(sub_df, 'Total Coliforms')
 
         cur.execute(insert_query, (
-            int(sample_id),
+            str(sample_id),
             collection_date,
-            chloride,
-            hardness_total,
-            calcium,
-            ph,
-            ph_field,
-            sodium_dissolved,
-            sulphate,
-            water_temperature,
-            oxygen_dissolved,
-            magnesium,
-            silica,
-            nitrate_nitrogen,
-            e_coli,
-            total_coliforms
+            json.dumps(chloride),
+            json.dumps(hardness_total),
+            json.dumps(calcium),
+            json.dumps(ph),
+            json.dumps(ph_field),
+            json.dumps(sodium_dissolved),
+            json.dumps(sulphate),
+            json.dumps(water_temperature),
+            json.dumps(oxygen_dissolved),
+            json.dumps(magnesium),
+            json.dumps(silica),
+            json.dumps(nitrate_nitrogen),
+            json.dumps(e_coli),
+            json.dumps(total_coliforms)
         ))
         conn.commit()
         print(f"Data inserted")

@@ -35,4 +35,4 @@ def get_csv_download_link(link, ID):
     return export_link, ID
 
 
-print(get_csv_download_link('https://www.ecan.govt.nz/data/well-search/welldetails/QlUyNC8wMDAy/QlUyNC8wMDAy', 'BU24/0002'))
+# print(get_csv_download_link('https://www.ecan.govt.nz/data/well-search/welldetails/QlUyNC8wMDAy/QlUyNC8wMDAy', 'BU24/0002'))
