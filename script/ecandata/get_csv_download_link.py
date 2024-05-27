@@ -33,3 +33,6 @@ def get_csv_download_link(link, ID):
     export_link = export_data_button.get_attribute('href')
     #print(export_link)
     return export_link, ID
+
+
+print(get_csv_download_link('https://www.ecan.govt.nz/data/well-search/welldetails/QlUyNC8wMDAy/QlUyNC8wMDAy', 'BU24/0002'))

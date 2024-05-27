@@ -17,3 +17,5 @@ def get_and_download_well_info(code):
             print(f"There was an error: {e} when trying to download the code: {code}")
     return 1
 
+
+get_and_download_well_info('BU24/0002')

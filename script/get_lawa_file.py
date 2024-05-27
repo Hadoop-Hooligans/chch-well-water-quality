@@ -9,7 +9,7 @@ def download_excel_workbook(url, name="Groundwater") -> dict:
     response = requests.get(url)
     content_type = response.headers.get('Content-Type')
     assert 'excel' in content_type or url.endswith(('.xls', '.xlsx'))
-    file_dest = "LawaDownloads"
+    file_dest = "./"
     os.makedirs(file_dest, exist_ok=True)
 
     save_path = os.path.join(file_dest, name + str(date.today()) + ".xlsx")

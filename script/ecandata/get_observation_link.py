@@ -39,3 +39,6 @@ def get_obs_link(well_code):
     link_text = first_link.text
     driver.quit()
     return link_href, link_text
+
+
+print(get_obs_link('I39-0007'))
