@@ -17,10 +17,13 @@ import pandas as pd
 
 
 if __name__ == "__main__":
-    get_unique_wells.get_unique_wells('Groundwater2024-05-25.xlsx')
-    unique_wells = pd.read_csv('./unique_wells.csv', header=None)
-    unique_wells = unique_wells.iloc[0].to_list()
-    codes_to_test = ['M35/6040', 'M35/7281', 'M35/1382', 'M35/4875']
-    for code in codes_to_test:
-        get_csv_v2.get_csv_file(well_code=code)
+    # get_unique_wells.get_unique_wells('Groundwater2024-05-25.xlsx')
+    # unique_wells = pd.read_csv('./unique_wells.csv', header=None)
+    # unique_wells = unique_wells.iloc[0].to_list()
+    # codes_to_test = ['M35/6040', 'M35/7281', 'M35/1382', 'M35/4875']
+    directory = '../'
+    well_code_list = os.listdir(directory)
+    code_list = [x.split('.')[0] for x in well_code_list]
+    for code in code_list:
+        # get_csv_v2.get_csv_file(well_code=file)
         get_into_dataframe.get_main_data(well_code=code)

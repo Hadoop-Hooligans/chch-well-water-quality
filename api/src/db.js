@@ -1,7 +1,7 @@
-require('dotenv').config()
-
 const { Pool } = require('pg');
 const { ssl } = require('pg/lib/defaults');
+
+require('dotenv').config()
 
 const pool = new Pool({
     user: process.env.DB_USER,
@@ -12,6 +12,7 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
+console.log(process.env)
 module.exports = {
     query: (text, params) => pool.query(text, params)
 };
