@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db')
+const db = require('../db.js')
 
 // Example route
 router.get('/', (req, res) => {
@@ -32,15 +32,6 @@ router.get('/acceptable_determinands', async (req, res) => {
     }
 })
 
-router.get('/testingcross', async (req, res) => {
-    try {
-        const result = await db.query(`SELECT * FROM sample_v2 CROSS JOIN acceptable_determinands_v2 WHERE sample_v2.sample_id = '20240695';`)
-        res.json(result.rows)
-    }
-    catch (err) {
-        console.log(err)
-    }
-})
 
 router.get('/well_metadata', async (req, res) => {
     try {
