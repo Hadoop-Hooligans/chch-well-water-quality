@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db.js')
+require('dotenv').config();
 
 // Example route
 router.get('/', (req, res) => {
-    res.send('<h1>Christchurch Water Quality</h1>');
+    res.send(`<h1>Christchurch Water Quality</h1> ${process.env.DB_NAME}`);
 });
 
 // router.get('/:well_id/:acceptable?', async (req, res) => {
