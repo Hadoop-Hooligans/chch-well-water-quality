@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/66f9af6a-6d2e-49e3-9338-370965e35b5c/resourceGroups/chch-water-quality/providers/Microsoft.Web/sites/chch-well-water-quality",
+    "appService.deploySubpath": "."
+}
