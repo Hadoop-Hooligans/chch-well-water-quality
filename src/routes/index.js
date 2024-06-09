@@ -5,7 +5,7 @@ require('dotenv').config();
 
 // Example route
 router.get('/', (req, res) => {
-    res.send(`<h1>Christchurch Water Quality</h1> ${process.env.DB_NAME}`);
+    res.send(`<h1>Christchurch Water Quality</h1> ${process.env.DB_NAME} ${process.env.DB_HOST} ${process.env.DB_USER} ${process.env.DB_PASSWORD}`);
 });
 
 // router.get('/:well_id/:acceptable?', async (req, res) => {
