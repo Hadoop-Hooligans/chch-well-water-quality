@@ -35,7 +35,7 @@ router.get('/acceptable_determinands', async (req, res) => {
 
 
 router.get('/well_metadata', async (req, res) => {
-    console.log("Fetching Data")
+    console.log(`Fetching Data ${process.env.DB_HOST}`)
     try {
         const result = await db.query(`SELECT * from well_metadata`)
         res.json(result.rows)
