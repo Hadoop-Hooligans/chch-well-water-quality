@@ -12,7 +12,6 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
-console.log(process.env)
 module.exports = {
     query: (text, params) => pool.query(text, params)
 };
